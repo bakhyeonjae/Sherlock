@@ -1,0 +1,18 @@
+1. Add the statement begins with 'classpath' in build.gradle. Refer to below description
+
+buildscript {
+    dependencies {
+        classpath 'com.uphyca.gradle:gradle-android-aspectj-plugin:0.9.14'
+    }
+}
+
+2. Add plugin - com.uphyca.android-aspectj below 'com.android.application' declaration
+
+apply plugin: 'com.android.application'
+apply plugin:'com.uphyca.android-aspectj'
+
+3. Put the Prof.java and AutoLog.aj file into the source directory
+
+4. Declare package on top of the 2 files - Prof.java and AutoLog.aj
+
+5. Build project using 'gradle build' command.

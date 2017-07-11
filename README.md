@@ -1,2 +1,2 @@
 # Sherlock
-Sherlock is a software analysis tool.
+The Software Analysis Tool

@@ -1,0 +1,73 @@
+#ifndef __WORLD_AH__
+#define __WORLD_AH__
+
+#include <iostream>
+#include <sys/time.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+using namespace std;
+
+const char *TAG = "SHERLOCK/PROFILING/BEHAVIOUR";
+
+template <int I> struct ArgPrinter
+{
+    template <class JP> static inline void work (JP &tjp) {
+        ArgPrinter<I-1>::work(tjp);
+        cout << *tjp.template arg<I-1>() << ",,";
+    }
+};
+
+template <> struct ArgPrinter<0>
+{
+    template <class JP> static inline void work (JP &tjp) {}
+};
+
+aspect World {
+
+    template <class JP> void print_args (JP &tjp)
+    {
+        if (JP::ARGS > 0)   cout << " [args] ";
+        ArgPrinter<JP::ARGS>::work(tjp);
+    }
+
+    advice execution("% ...::%(...)") : before() {
+
+        struct timeval tv;
+        char tmbuf[64], buf[64];
+        gettimeofday(&tv, NULL);
+        time_t curr_time_in_sec = tv.tv_sec;
+        struct tm *now = localtime(&curr_time_in_sec);
+        strftime(tmbuf, sizeof tmbuf, "%Y-%m-%d %H:%M:%S", now);
+        snprintf(buf,sizeof buf, "%s.%06ld", tmbuf, tv.tv_usec);
+
+        pthread_t ptid = pthread_self();
+        uint64_t threadId = 0;
+        memcpy(&threadId, &ptid, std::min(sizeof(threadId), sizeof(ptid)));
+
+        cout << TAG << " " << buf << " " << threadId << " [entry] " << JoinPoint::signature();
+        tjp->arg(0);
+        print_args(*tjp);
+        cout << endl;
+    }
+
+    advice execution("% ...::%(...)") : after() {
+        struct timeval tv;
+        char tmbuf[64], buf[64];
+        gettimeofday(&tv, NULL);
+        time_t curr_time_in_sec = tv.tv_sec;
+        struct tm *now = localtime(&curr_time_in_sec);
+        strftime(tmbuf, sizeof tmbuf, "%Y-%m-%d %H:%M:%S", now);
+        snprintf(buf,sizeof buf, "%s.%06ld", tmbuf, tv.tv_usec);
+
+        pthread_t ptid = pthread_self();
+        uint64_t threadId = 0;
+        memcpy(&threadId, &ptid, std::min(sizeof(threadId), sizeof(ptid)));
+
+        cout << TAG << " " << buf << " " << threadId << " [exit] " << JoinPoint::signature() << endl;
+    }
+
+};
+
+#endif

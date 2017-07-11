@@ -1,0 +1,16 @@
+This is a simple example project for generating logs automatically. To run this project follow the steps described below.
+
+1. Build a jar file using gradle
+$ cd JarProject
+$ gradle build
+
+2. Build main application using gradle and goto 'step 3' or 'step 4'
+$ cd ../DriverProject
+$ gradle build
+
+3. Run the application to save log file and execute Sherlock in file mode.
+$ gradle run > log.txt
+$ python3.4 Sherlock.py -f log.txt -c ../cfg/java-gradle/java-aspectj-custom.cfg
+
+4. Run the application and execute Sherlock in batch mode.
+$ gradle run | python3.4 ../../../../../../src/Sherlock.py -b -c ../../../../java-aspectj-custom.cfg
