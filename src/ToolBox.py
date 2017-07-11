@@ -167,6 +167,12 @@ class ToolBox(QVBoxLayout):
         self.tableTime.item(2,1).setText(duration + ' msec')
 
     def setMessageInfoArg(self,listParam,listArg):
+        # Clear the contents in the table
+        max_arg_num = 10
+        for idx in range(0,max_arg_num):
+            self.tableArgs.item(idx,0).setText('')
+            self.tableArgs.item(idx,1).setText('')
+
         if listArg:
             for idx, text in enumerate(listArg):
                 self.tableArgs.item(idx,1).setText(text)
