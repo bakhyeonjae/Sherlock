@@ -192,7 +192,7 @@ class Kitchen(threading.Thread):
                 ret_removed = arg_removed.split("[returns]")[0]
                 parameter_removed = package_method_name.split("(")[0]
                 inside_parenthesis = package_method_name.split("(")[1].split(")")[0].replace(' ','')
-                parameters = None
+                parameters = ""
                 if '' != inside_parenthesis:
                     parameters = inside_parenthesis.split(',')
                 return_type_removed = ".".join(list(parameter_removed.split(' '))[1:])
