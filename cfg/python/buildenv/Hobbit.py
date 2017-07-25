@@ -1,7 +1,6 @@
 import Aspecter
 
-class Hobbit(object):
-    __metaclass__ = Aspecter.Aspecter
+class Hobbit(metaclass=Aspecter.Aspecter):
 
     name = None
     def __init__(self,name):
@@ -18,6 +17,4 @@ class Hobbit(object):
             receiver.walk()
         elif 'run' == cmdType:
             receiver.run()
-
-Aspecter.Aspecter.register(name_pattern="^.*")
 
