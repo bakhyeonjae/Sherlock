@@ -1,5 +1,6 @@
-from PySide.QtGui import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QLineEdit, QListWidget, QTableWidget, QTableWidgetItem, QAbstractItemView, QFont, QBrush, QColor
-from PySide import QtGui, QtCore
+from PySide2.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QLineEdit, QListWidget, QTableWidget, QTableWidgetItem, QAbstractItemView
+from PySide2.QtGui import QFont, QBrush, QColor
+from PySide2 import QtGui, QtCore
 import Lifeline
 
 class HiddenMessageDialog(QDialog):
@@ -18,7 +19,7 @@ class HiddenMessageDialog(QDialog):
         listTitle = QLabel('Hidden Messages')
         layout.addWidget(listTitle)
 
-        self.listHiddenMessages = QtGui.QTableWidget(len(self.msgList),4)
+        self.listHiddenMessages = QTableWidget(len(self.msgList),4)
         self.listHiddenMessages.setHorizontalHeaderLabels(['Index','Name','Departure','Destination'])
         self.listHiddenMessages.setFixedWidth(400)
         #self.listHiddenMessages.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
@@ -41,7 +42,7 @@ class HiddenMessageDialog(QDialog):
 
         layout.addWidget(self.listHiddenMessages)
 
-        buttons = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Ok | QtGui.QDialogButtonBox.Cancel, QtCore.Qt.Horizontal, self)
+        buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel, QtCore.Qt.Horizontal, self)
         buttons.button(QDialogButtonBox.Ok).setText('Show')
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)

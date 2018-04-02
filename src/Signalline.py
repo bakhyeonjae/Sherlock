@@ -1,6 +1,6 @@
-from PySide import QtGui
-from PySide.QtGui import QFont
-from PySide import QtCore
+from PySide2 import QtGui
+from PySide2.QtGui import QFont
+from PySide2 import QtCore
 
 class Signalline(object):
 

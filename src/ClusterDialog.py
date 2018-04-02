@@ -1,5 +1,5 @@
-from PySide.QtGui import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QLineEdit
-from PySide import QtGui, QtCore
+from PySide2.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QLineEdit
+from PySide2 import QtGui, QtCore
 
 import Lifeline
 
@@ -24,7 +24,7 @@ class ClusterDialog(QDialog):
         self.validation_msg = QLabel(' ')
         layout.addWidget(self.validation_msg)
 
-        buttons = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Ok | QtGui.QDialogButtonBox.Cancel, QtCore.Qt.Horizontal, self)
+        buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel, QtCore.Qt.Horizontal, self)
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)

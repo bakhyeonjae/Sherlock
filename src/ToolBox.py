@@ -1,5 +1,5 @@
-from PySide import QtCore, QtGui
-from PySide.QtGui import QHBoxLayout, QVBoxLayout, QPushButton, QTextEdit, QLabel, QListWidget, QGroupBox, QCheckBox, QLineEdit, QInputDialog, QTableWidget, QTableWidgetItem, QSizePolicy, QFrame
+from PySide2 import QtCore, QtGui
+from PySide2.QtWidgets import QHBoxLayout, QVBoxLayout, QPushButton, QTextEdit, QLabel, QListWidget, QGroupBox, QCheckBox, QLineEdit, QInputDialog, QTableWidget, QTableWidgetItem, QSizePolicy, QFrame, QAbstractItemView, QListWidgetItem
 
 import ClusterDialog
 import const
@@ -21,7 +21,7 @@ class ToolBox(QVBoxLayout):
         self.sig.connect(self.addThreadList)
         self.mode = mode
 
-        self.sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Expanding)
+        self.sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
 
         self.groupBoxSearch = QGroupBox()
         self.groupBoxSearch.setStyleSheet("QGroupBox {border: 1px solid gray; border-radius: 4px; };")
@@ -51,7 +51,7 @@ class ToolBox(QVBoxLayout):
         vboxSearch.addLayout(self.browseHLayout)
         self.groupBoxSearch.setLayout(vboxSearch)
         self.addWidget(self.groupBoxSearch)
-        self.groupBoxSearch.setSizePolicy(QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed))
+        self.groupBoxSearch.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
 
         self.buttonHiddenLifelines = QPushButton('Show hidden life-lines')
         self.buttonHiddenLifelines.setFixedWidth(200)
@@ -74,7 +74,7 @@ class ToolBox(QVBoxLayout):
         self.groupBoxMessageInfo.setStyleSheet("QGroupBox {border: 1px solid gray; border-radius: 9px; margin-top: 0.5em} QGroupBox::title {subcontrol-origin: margin; left: 10px; padding: 0 3px 0 3px;")
         vbox = QVBoxLayout()
         vbox.addWidget(self.msgInfo)
-        self.tableTime = QtGui.QTableWidget(3,2)
+        self.tableTime = QTableWidget(3,2)
         self.tableTime.setHorizontalHeaderLabels(['-','time'])
         self.tableTime.setColumnWidth(0,80)
         self.tableTime.setColumnWidth(1,150)
@@ -95,7 +95,7 @@ class ToolBox(QVBoxLayout):
         vbox.addWidget(self.titleArg)
 
         max_arg_num = 10
-        self.tableArgs = QtGui.QTableWidget(max_arg_num,2)
+        self.tableArgs = QTableWidget(max_arg_num,2)
         self.tableArgs.setHorizontalHeaderLabels(['type','value'])
         for idx in range(0,max_arg_num):
             self.tableArgs.setItem(idx,0,QTableWidgetItem())
@@ -107,7 +107,7 @@ class ToolBox(QVBoxLayout):
         vbox.addWidget(self.titleArg)
 
         max_ret_num = 4
-        self.tableRet = QtGui.QTableWidget(max_ret_num,2)
+        self.tableRet = QTableWidget(max_ret_num,2)
         self.tableRet.setHorizontalHeaderLabels(['type','value'])
         for idx in range(0,max_ret_num):
             self.tableRet.setItem(idx,0,QTableWidgetItem())
@@ -242,7 +242,7 @@ class ToolBox(QVBoxLayout):
             self.listThread = QListWidget()
             
         self.listThread.setFixedWidth(200)
-        self.listThread.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
+        self.listThread.setSelectionMode(QAbstractItemView.MultiSelection)
         QtCore.QObject.connect(self.listThread, QtCore.SIGNAL("itemClicked(QListWidgetItem *)"), self.toggleThreadDisplay)
         self.threadvbox.addWidget(self.threadInfo)
         self.threadvbox.addWidget(self.listThread)
@@ -251,7 +251,7 @@ class ToolBox(QVBoxLayout):
         self.groupBoxThreadInfo.setSizePolicy(self.sizePolicy)
 
         for id in threads:
-            item = QtGui.QListWidgetItem(id)
+            item = QListWidgetItem(id)
             self.listThread.addItem(item)
 
     def connectController(self,controller):

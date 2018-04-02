@@ -45,9 +45,9 @@ class SourceViewer(object):
             if message == (line.split())[0]:
                 file_path = line.split()[1]
                 search_str = line.split("/^")[1].split("$/;")[0]
-                #if "class:" + module + "\n" in line or "interface:" + module + "\n" in line:
-                #    file_path = line.split()[1]
-                #    search_str = line.split("/^")[1].split("$/;")[0]
+                if "class:" + module + "\n" in line or "interface:" + module + "\n" in line:
+                    file_path = line.split()[1]
+                    search_str = line.split("/^")[1].split("$/;")[0]
 
                 byte_stuffing_search_str = search_str.replace('*','\\*')
 

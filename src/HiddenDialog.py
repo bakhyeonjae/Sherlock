@@ -1,5 +1,5 @@
-from PySide.QtGui import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QLineEdit, QListWidget
-from PySide import QtGui, QtCore
+from PySide2.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QLineEdit, QListWidget
+from PySide2 import QtGui, QtCore
 
 class HiddenDialog(QDialog):
    

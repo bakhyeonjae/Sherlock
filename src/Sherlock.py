@@ -1,7 +1,8 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python3.6
 
-from PySide import QtCore, QtGui
-from PySide.QtGui import QLabel, QScrollArea, QWidget, QApplication, QHBoxLayout, QVBoxLayout, QCursor
+from PySide2 import QtCore, QtGui
+from PySide2.QtWidgets import QLabel, QScrollArea, QWidget, QApplication, QHBoxLayout, QVBoxLayout
+from PySide2.QtGui import QCursor
 import sys
 
 import CaptainServer

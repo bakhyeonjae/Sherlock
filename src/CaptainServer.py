@@ -1,5 +1,6 @@
-from PySide import QtGui
-from PySide import QtCore
+from PySide2 import QtGui
+from PySide2 import QtCore
+from PySide2.QtWidgets import QMenu
 
 import Lifeline
 import Signalline
@@ -84,7 +85,7 @@ class CaptainServer(object):
         self.highlightObject = msg
         self.selectMessage(self.highlightObject)
         
-        menu = QtGui.QMenu()
+        menu = QMenu()
         menu.addAction(self.messageMenu.actHide)
         menu.addAction(self.messageMenu.actHideAll)
         menu.addAction(self.messageMenu.actViewCode)

@@ -1,5 +1,5 @@
-from PySide import QtCore, QtGui
-from PySide.QtGui import QLabel
+from PySide2 import QtCore, QtGui
+from PySide2.QtWidgets import QLabel, QAction, QMenu
 
 import Utils
 import ClusterDialog
@@ -28,15 +28,15 @@ class Header(QLabel):
         self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.createHeaderMenus)
 
-        self.deleteAct = QtGui.QAction('Hide', self)
+        self.deleteAct = QAction('Hide', self)
         self.deleteAct.setStatusTip('Hide this life-line')
         self.deleteAct.triggered.connect(self.hideLifeLine)
 
-        self.groupAct = QtGui.QAction('Make a cluster', self)
+        self.groupAct = QAction('Make a cluster', self)
         self.groupAct.setStatusTip('Make a cluster of multiple life-lines')
         self.groupAct.triggered.connect(self.showClusterDialog)
 
-        self.scatterAct = QtGui.QAction('Scatter', self)
+        self.scatterAct = QAction('Scatter', self)
         self.scatterAct.setStatusTip('Scatter this cluster')
         self.scatterAct.triggered.connect(self.scatterCluster)
 
@@ -59,7 +59,7 @@ class Header(QLabel):
                     break
 
                 self.selectedHeader = headInfo
-                menu = QtGui.QMenu()
+                menu = QMenu()
                 if headInfo['flagCluster']:
                     menu.addAction(self.scatterAct)
                 else:

@@ -1,4 +1,5 @@
-from PySide import QtCore, QtGui
+from PySide2 import QtCore, QtGui
+from PySide2.QtWidgets import QAction
 
 class MessageMenu(QtCore.QObject):
    
@@ -10,19 +11,19 @@ class MessageMenu(QtCore.QObject):
  
     def __init__(self,diagramView):
         QtCore.QObject.__init__(self)
-        self.actHide = QtGui.QAction('Hide message', self)
+        self.actHide = QAction('Hide message', self)
         self.actHide.setStatusTip('Hide this message line')
         self.actHide.triggered.connect(self.hideOneMessage)
 
-        self.actHideAll = QtGui.QAction('Hide all', self)
+        self.actHideAll = QAction('Hide all', self)
         self.actHideAll.setStatusTip('Hide all the messages')
         self.actHideAll.triggered.connect(self.hideAllMessage)
 
-        self.actViewCode = QtGui.QAction('View code', self)
+        self.actViewCode = QAction('View code', self)
         self.actViewCode.setStatusTip('View source code of the message')
         self.actViewCode.triggered.connect(self.openCodeViewer)
 
-        self.actCloseBody = QtGui.QAction('Close body', self)
+        self.actCloseBody = QAction('Close body', self)
         self.actCloseBody.setStatusTip('View source code of the message')
         self.actCloseBody.triggered.connect(self.closeBody)
 
