@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QLineEdit, QListWidget
+from PySide2.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QLineEdit, QListWidget, QAbstractItemView
 from PySide2 import QtGui, QtCore
 
 class HiddenDialog(QDialog):
@@ -16,7 +16,7 @@ class HiddenDialog(QDialog):
 
         self.listHiddenLifelines = QListWidget()
         self.listHiddenLifelines.setFixedWidth(400)
-        self.listHiddenLifelines.setSelectionMode(QtGui.QAbstractItemView.MultiSelection)
+        self.listHiddenLifelines.setSelectionMode(QAbstractItemView.MultiSelection)
 
         for text in self.lifelines:
             item = QtGui.QListWidgetItem(text)
